@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <center>
+<h1 style="color: red; font-size: 80px;">JavaScript Testing Site</h1>
+
+<h2 id="test" style="font-size: 80px;"></h2>
+
+<p>[NOTE: REFRESH FOR NEW JOKE]</p>
+
+</center>
+
+
+
+<script>
+    fetch("https://api.chucknorris.io/jokes/random")
+    .then((response) => {
+        return response.json();
+    })
+    .then((data)=>{
+        // console.log(data).value
+        var joke = data.value
+        console.log(joke)
+        document.getElementById("test").innerHTML = joke;       //used to pass the value of js to the class or id so that it can be showd to the user
+
+    })
+    .catch()
+</script>
+
+</body>
+</html>
