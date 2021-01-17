@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>Event Litsener</title>
+        <style>
+
+            .red{
+                height: 50px;
+                width: 50px;
+                background-color: red;
+                margin: auto;
+                padding: 10px;
+            }
+            .yellow{
+                height: 50px;
+                width: 50px;
+                background-color: yellow;
+                margin: auto;
+                padding: 10px;
+            }
+            .green{
+                height: 50px;
+                width: 50px;
+                background-color: green;
+                margin: auto;
+                padding: 10px;
+            }
+
+            .center{
+                height: 400px;
+                width: 400px;
+                border-radius: 100%;
+                margin: auto;
+                margin-top: 80px;
+                
+            }
+            
+        </style>
+    </head>
+
+    <body>
+        <div class="red"></div>
+        <div class="yellow"></div>
+        <div class="green"></div>
+        <div class="center"></div>
+
+
+        <script>
+
+            //Here selected the class and made a variable of it
+
+            var red = document.querySelector(".red")        
+            var yellow = document.querySelector(".yellow")
+            var green = document.querySelector(".green")
+            var center = document.querySelector(".center")
+
+            // 'ele()' collects elemed color in rgb() format
+
+            const ele = function(selectedElement){
+                return window.getComputedStyle(selectedElement).backgroundColor;
+            }           
+
+            // var redElement = ele(red)
+
+            // console.log(redElement)
+            
+            // event lisner which will perform the funtion after mouse entering
+
+            // red.addEventListener("dblclick",()=>{               
+            //     center.style.background = redElement;
+            // });
+            
+            //Mouse events https://developer.mozilla.org/en-US/docs/Web/Events
+
+            const magic = (basic,changed) => {
+                return basic.addEventListener("mouseenter",()=>{               
+                    center.style.background = changed;
+                });
+            }
+
+            magic(red,ele(red))
+            magic(yellow,ele(yellow))
+            magic(green,ele(green))
+            
+
+
+
+            
+                                        
+
+        </script>
+
+    </body>
+</html>
