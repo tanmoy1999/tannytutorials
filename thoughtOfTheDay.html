@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <center>
+<h1 style="color: red; font-size: 80px;">Thought of the Day</h1>
+
+<h2 id="test" style="font-size: 80px;"></h2>
+
+<p>[NOTE: REFRESH FOR NEW QUOTES]</p>
+<p>[REF: https://type.fit/]</p>
+
+</center>
+
+
+
+<script>
+    fetch("https://type.fit/api/quotes")
+    .then((response)=>{
+        // console.log(response.json())
+        return response.json()
+    })
+    .then((data)=>{
+        var num = parseInt(Math.random()*100);
+        var thought = data[num].text;
+        console.log(data[num].text);
+        document.getElementById("test").innerHTML = thought;       //used to pass the value of js to the class or id so that it can be showd to the user
+
+    })
+    .catch()
+    
+</script>
+
+</body>
+</html>
