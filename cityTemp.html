@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <center>
+        <form>
+            City Name:<input type="text" id="city" "><br><br>
+            <input type="button" value="Submit" id="btn" onclick="temp()">
+        </form>
+        
+        <p style="font-size: 80px; color: red;">Temperature: <h2 id="temp" style="font-size: 80px;">Enter CITY NAME</h2>
+        
+
+
+        
+        <p>[REF: https://api.openweathermap.org/]</p>
+        [<a href="https://github.com/tanmoy1999/tannytutorials/blob/main/thoughtOfTheDay.html">SOURCE CODE</a>]
+
+    </center>
+
+<script>
+    
+    function temp(){
+        var loc = document.getElementById("city").value;
+        
+        if(loc!="")
+        {
+            //var loc = "kolkata"
+
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${loc}&appid=79012bc62b68cb8157e9c25c52c47660`)
+            .then((response)=>{
+                //console.log(response.json())
+                return response.json()
+            })
+            .then(data => {
+                // console.log(data.coord.lat)
+                // console.log(data.coord.lon)
+                var temperature = -273.15 + (data.main.temp);
+                console.log(temperature)
+
+                document.getElementById("temp").innerHTML = parseInt(temperature) + " *C";
+
+            })
+            .catch()
+        }
+        else{
+            console.log("enter city name")
+            document.getElementById("temp").innerHTML = "Enter City Name";
+
+        }
+    }
+
+
+
+    
+    
+</script>
+
+</body>
+</html>
