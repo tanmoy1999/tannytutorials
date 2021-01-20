@@ -1,0 +1,57 @@
+<html>
+    
+    <head>
+        <title>SIMPLE CALCULATOR</title>
+    </head>
+    <body>
+        <center>
+            <h1 style="color: red;">SIMPLE CALCULATOR</h1><br>
+            a <input type="number" id = "a"><br><br>
+            b <input type="number" id="b"><br><br>
+            
+            <button id="btnn0">add</button>
+            <button id="btnn1">Sub</button>
+            <button id="btnn2">mul</button>
+            <button id="btnn3">div</button>
+            <br><br>
+
+            <div id="result"></div>
+         </center>
+
+    </body>
+    <script>
+
+        document.getElementById('btnn0').addEventListener('click',function(){
+            var a1 = Number(document.getElementById("a").value)
+            var b1 = Number(document.getElementById("b").value)
+             var c = a1+b1;
+             console.log(c)
+             document.getElementById('result').innerHTML =c;
+            //console.log(a1)
+        })
+        document.getElementById('btnn1').addEventListener('click',function(){
+            var a1 = Number(document.getElementById("a").value)
+            var b1 = Number(document.getElementById("b").value)
+             var c = a1-b1;
+             console.log(c)
+             document.getElementById('result').innerHTML =c;
+            //console.log(a1)
+        })
+        document.getElementById('btnn2').addEventListener('click',function(){
+            var a1 = Number(document.getElementById("a").value)
+            var b1 = Number(document.getElementById("b").value)
+             var c = a1*b1;
+             console.log(c)
+             document.getElementById('result').innerHTML =c;
+            //console.log(a1)
+        })
+        document.getElementById('btnn3').addEventListener('click',function(){
+            var a1 = Number(document.getElementById("a").value)
+            var b1 = Number(document.getElementById("b").value)
+             var c = a1/b1;
+             console.log(c)
+             document.getElementById('result').innerHTML =c;
+            //console.log(a1)
+        })
+    </script>
+</html>
