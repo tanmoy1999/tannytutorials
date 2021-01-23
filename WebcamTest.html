@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test and Check your WEBCAM</title>
+</head>
+<style>
+    #camera{
+        width: 300px;
+        height: 300px;
+        border: 1px solid black;
+    }
+    #results{
+        width: 640px;
+        height: 480px;
+        
+    }
+</style>
+<body>
+    <center>
+        <h2>Webcam Test</h2>
+        <div id="camera"></div><br><br>
+        <button onclick="snapshot()">Click!!</button>
+        <div id="results"></div>
+    </center>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+<script>
+    // Load WEbcam
+    Webcam.set({
+        width:350,
+        height:350,
+        image_format:'jpeg',
+        jpeg_quality: 90
+    })
+    Webcam.attach("#camera")
+    function snapshot(){
+        Webcam.snap(function(data_uri){
+            document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
+        })
+    }
+</script>
+    
+</script>
+</body>
+</html>
