@@ -13,4 +13,5 @@
 ## TensorFlow JS Projects
 
 1) [Basic Number Prediction using Tensorflow.js](https://tanmoy1999.github.io/tannytutorials/tfjs/basic_tfjs.html)
+2) [Flower Prediction](https://tanmoy1999.github.io/tannytutorials/tfjs/iris.html)
 
