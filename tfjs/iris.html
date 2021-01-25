@@ -1,0 +1,78 @@
+<html>
+<head></head>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script lang="js">
+        async function run(){
+            var sepal_length = document.getElementById('sepal_length').value
+            var sepal_width = document.getElementById('sepal_width').value
+            var petal_length = document.getElementById('petal_length').value
+            var petal_width = document.getElementById('petal_width').value
+
+
+            const csvUrl = 'https://raw.githubusercontent.com/lmoroney/dlaicourse/master/TensorFlow%20Deployment/Course%201%20-%20TensorFlow-JS/Week%201/Examples/iris.csv';
+            const trainingData = tf.data.csv(csvUrl, {
+                columnConfigs: {
+                    species: {
+                        isLabel: true
+                    }
+                }
+            });
+            
+            const numOfFeatures = (await trainingData.columnNames()).length - 1;
+            const numOfSamples = 150;
+            const convertedData =
+                  trainingData.map(({xs, ys}) => {
+                      const labels = [
+                            ys.species == "setosa" ? 1 : 0,
+                            ys.species == "virginica" ? 1 : 0,
+                            ys.species == "versicolor" ? 1 : 0
+                      ] 
+                      return{ xs: Object.values(xs), ys: Object.values(labels)};
+                  }).batch(10);
+            
+            const model = tf.sequential();
+            model.add(tf.layers.dense({inputShape: [numOfFeatures], activation: "sigmoid", units: 5}))
+            model.add(tf.layers.dense({activation: "softmax", units: 3}));
+            
+            model.compile({loss: "categoricalCrossentropy", optimizer: tf.train.adam(0.06)});
+            
+            await model.fitDataset(convertedData, 
+                             {epochs:100,
+                              callbacks:{
+                                  onEpochEnd: async(epoch, logs) =>{
+                                      console.log("Epoch: " + epoch + " Loss: " + logs.loss);
+                                  }
+                              }});
+            
+            // Test Cases:
+
+                
+
+                const testVal = tf.tensor2d([parseFloat(sepal_length), parseFloat(sepal_width), parseFloat(petal_length), parseFloat(petal_width)], [1, 4]);
+                const prediction = model.predict(testVal);
+                const pIndex = tf.argMax(prediction, axis=1).dataSync();
+                
+                const classNames = ["Setosa", "Virginica", "Versicolor"];
+                
+                //alert(prediction)
+                //alert(classNames[pIndex])
+
+                document.getElementById('result').innerHTML = classNames[pIndex];
+            
+            
+        }
+        
+    </script>
+<body>
+    <center>
+        <h1>IRIS TENSORFLOW JS</h1>
+        sepal_length: <input type="number" id="sepal_length"><br><br>
+        sepal_width: <input type="number" id="sepal_width"><br><br>
+        petal_length: <input type="number" id="petal_length"><br><br>
+        petal_width: <input type="number" id="petal_width"><br><br>
+        <button onclick="run();">Submit</button><br><br>
+        <br><br><p id="result" style="font-size: 30px;"></p>
+    </center>
+
+</body>
+</html>
