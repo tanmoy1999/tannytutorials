@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>
+
+        </title>
+    </head>
+    <body>
+        <center>
+            <h1 style="color: red;">IMAGE CLASSIFIER USING MOBILENET</h1><br><br>
+
+            <input type='file' onchange="readURL(this);" accept="image/png, image/jpeg" /><br><br>
+            <img id="img"   style="max-width:500px;"/> <br><br>
+            <input type="button" id="submit" value="submit" onclick="run()"><br><br>
+            <h1 id="results"></h1>
+        </center>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = (e) => {
+                    $('#img').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function run(){
+            const img = document.getElementById('img');
+            mobilenet.load().then(model => {
+                model.classify(img).then(predictions => {
+                    console.log(predictions[0].className)
+                    console.log(predictions[0].probability)
+                    console.log(predictions)
+                    document.getElementById("results").innerHTML = predictions[0].className +" <br> Probablity: "+ predictions[0].probability*100 + "%";
+                   
+
+                })
+            })
+        }
+    </script>
+</html>
