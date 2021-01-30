@@ -14,5 +14,5 @@
 
 1) [Basic Number Prediction using Tensorflow.js](https://tanmoy1999.github.io/tannytutorials/tfjs/basic_tfjs.html)<br  />
 2) [Flower Prediction](https://tanmoy1999.github.io/tannytutorials/tfjs/iris.html)<br  />
-3) [Image Classifier using MobileNet Model](https://tanmoy1999.github.io/tannytutorials/tfjs/iris.html)<br  />
+3) [Image Classifier using MobileNet Model](https://tanmoy1999.github.io/tannytutorials/tfjs/imgClass.html)<br  />
 
