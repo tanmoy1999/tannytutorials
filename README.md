@@ -18,3 +18,7 @@
 2) [Flower Prediction](https://tanmoy1999.github.io/tannytutorials/tfjs/iris.html)<br  />
 3) [Image Classifier using MobileNet Model](https://tanmoy1999.github.io/tannytutorials/tfjs/imgClass.html)<br  />
 
+## Node.js Apps
+
+1) [Chat App](http://tanny-chat-app.herokuapp.com/)<br  />
+2) [My Blog Site](https://tanny-blog.herokuapp.com/)<br  />
